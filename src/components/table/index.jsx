@@ -3,49 +3,6 @@ import PropTypes from 'prop-types';
 import { Button, Table as ReactstrapTable } from 'reactstrap';
 import { noop } from '@babel/types';
 import './index.css';
-
-// Example of use
-
-{/* <Table
-    header={[
-        {
-            title: "Code",
-            column: "code"
-        },
-        {
-            title: "title",
-            column: "title"
-        },
-        {
-            title: "date",
-            column: "date"
-        },
-        {
-            title: "Processes",
-            column: "processes"
-        },
-        {
-            title: "Action",
-            column: "action"
-        }
-    ]}
-    rows={[
-        {
-            code: "Example1"
-        }, {
-            title: "Example2"
-        }, {
-            date: "Example3"
-        }, {
-            processes: "Example4"
-        }, {
-            action: "Example5"
-            onClick: () => alert(`item ${5} clicked!`)
-        }
-    ]}
-    itemsPerPage={5}
-/> */}
-
 export const Table = ({ header, rows, itemsPerPage }) => {
 
     const [page, setPage] = useState(1);

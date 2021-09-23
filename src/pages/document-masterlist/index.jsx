@@ -11,8 +11,8 @@ export const MasterList = () => {
             })
             .catch(() => console.log('Ruim'))
     }, [])
-    const ButtonAction = <button>Entrar</button>
     const rowsTable = []
+
     class rows {
         constructor(code, title, date, processes, action) {
             this.code = code;
@@ -24,7 +24,9 @@ export const MasterList = () => {
     }
     const mapArray = list.map((item) => {
         const mapProcesses = item.processes.map((subitem) => subitem.name);
-        const newRow = new rows(item.code, item.title, item.['release-date'], mapProcesses, ButtonAction);
+        const ButtonAction = <a href={`/document-details/${item.id}`}><button>Enter</button></a>
+        const datePublish = (item.['release-date'] == '' ? 'Não tem' : item.['release-date']);
+        const newRow = new rows(item.code, item.title, datePublish, mapProcesses, ButtonAction);
         (rowsTable).push(newRow);
 
     })
@@ -59,27 +61,6 @@ export const MasterList = () => {
                 rows={rowsTable}
                 itemsPerPage={5}
             />
-
-            {/*<table>
-                <thead>
-                    <tr>
-                        <th>Code</th>
-                        <th>Title</th>
-                        <th>Date</th>
-                        <th>Processes</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                {list.map((item) =>
-                    <PageList
-                        code={item.code}
-                        title={item.title}
-                        date={(item.['release-date']) == '' ? 'Não tem' : item.['release-date']}
-                        processes={item.processes.map((subitem) => subitem.name)}
-                        action={ButtonAction}
-                    />
-                )}
-                </table>*/}
         </div>
     )
 }
