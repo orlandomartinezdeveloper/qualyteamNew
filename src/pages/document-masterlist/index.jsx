@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../api';
 import { Table } from '../../components/table';
-export const MasterList = () => {
+import { Search } from '../../components/search';
+export const MasterList = (props) => {
     const [list, setList] = useState([]);
+    const handleSearch = props.handleSearch;
+    const busca = props.busca;
+    const url = '/documents'
+    const endPoint = `${url}?q=${busca}`
     useEffect(() => {
-        api.get('/documents')
+        api.get(endPoint)
             .then((response) => {
                 setList(response.data);
                 console.log(response.data)
             })
             .catch(() => console.log('Ruim'))
-    }, [])
+    }, [busca])
     const rowsTable = []
 
     class rows {
@@ -33,6 +38,7 @@ export const MasterList = () => {
     console.log(rowsTable);
     return (
         <div>
+            <Search handleSearch={handleSearch} />
             <h1>Novo MasterList</h1>
             <Table
                 header={[
