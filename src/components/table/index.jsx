@@ -9,30 +9,44 @@ import './index.css';
 {/* <Table
     header={[
         {
-            title: "A",
-            column: "a",
+            title: "Code",
+            column: "code"
+        },
+        {
+            title: "title",
+            column: "title"
+        },
+        {
+            title: "date",
+            column: "date"
+        },
+        {
+            title: "Processes",
+            column: "processes"
+        },
+        {
+            title: "Action",
+            column: "action"
         }
     ]}
     rows={[
         {
-            a: "Example1"
+            code: "Example1"
         }, {
-            a: "Example2"
+            title: "Example2"
         }, {
-            a: "Example3"
+            date: "Example3"
         }, {
-            a: "Example4"
+            processes: "Example4"
         }, {
-            a: "Example5"
+            action: "Example5"
             onClick: () => alert(`item ${5} clicked!`)
-        }, {
-            a: "Example6"
-        },
+        }
     ]}
-    itemsPerPage={3}
+    itemsPerPage={5}
 /> */}
 
-const Table = ({ header, rows, itemsPerPage }) => {
+export const Table = ({ header, rows, itemsPerPage }) => {
 
     const [page, setPage] = useState(1);
 
@@ -99,5 +113,3 @@ Table.propTypes = {
     rows: PropTypes.array.isRequired,
     header: PropTypes.array.isRequired,
 }
-
-export default Table;
