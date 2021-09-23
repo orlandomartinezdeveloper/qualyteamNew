@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './index.css'
 export const Search = (props) => {
     const handleSearch = props.handleSearch;
     const [busca, setBusca] = useState('');
@@ -8,10 +9,10 @@ export const Search = (props) => {
     };
     useEffect(passText, [busca, handleSearch])
     return (
-        <div>
-            <div>
-                <div>
-                    <input type="text" placeholder="Qual documento você está procurando?"
+        <div className="search__module">
+            <div clasName="search__cBotoes">
+                <div className="search__busqueda">
+                    <input type="text" className="search__inputGrand" placeholder="Qual documento você está procurando?"
                         value={busca}
                         onChange={
                             (event) => {
@@ -19,7 +20,7 @@ export const Search = (props) => {
                             }
                         }
                         aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                    <span><i className="fa fa-search "></i></span>
+                    <span className="search__lupa"><i className="fa fa-search "></i></span>
                 </div>
             </div>
         </div>

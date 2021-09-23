@@ -1,7 +1,21 @@
 .navbar {
     padding: 8px 16px;
 }
+.navbar__logo {
+    width: 200px;
+    padding: 15px;
+}
 
+.navbar__link {
+    text-decoration: none;
+    color: #000;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+}
+
+.navbar__link:hover {
+    color:rgb(126, 126, 126);
+}
 @media (min-width: 1024px)
 {
     .navbar {

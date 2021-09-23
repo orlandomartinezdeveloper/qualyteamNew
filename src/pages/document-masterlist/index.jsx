@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import api from '../../api';
 import { Table } from '../../components/table';
 import { Search } from '../../components/search';
+import { Button } from 'reactstrap';
 export const MasterList = (props) => {
     const [list, setList] = useState([]);
     const handleSearch = props.handleSearch;
@@ -28,8 +29,8 @@ export const MasterList = (props) => {
         }
     }
     const mapArray = list.map((item) => {
-        const mapProcesses = item.processes.map((subitem) => subitem.name);
-        const ButtonAction = <a href={`/document-details/${item.id}`}><button>Enter</button></a>
+        const mapProcesses = <ul>{item.processes.map((subitem) => <li>{subitem.name}</li>)}</ul>
+        const ButtonAction = <a href={`/document-details/${item.id}`} className="table-button"><Button color='secondary'>Enter</Button></a>
         const datePublish = (item.['release-date'] == '' ? 'Não tem' : item.['release-date']);
         const newRow = new rows(item.code, item.title, datePublish, mapProcesses, ButtonAction);
         (rowsTable).push(newRow);
@@ -37,36 +38,39 @@ export const MasterList = (props) => {
     })
     console.log(rowsTable);
     return (
-        <div>
+        <Fragment>
             <Search handleSearch={handleSearch} />
-            <h1>Novo MasterList</h1>
-            <Table
-                header={[
-                    {
-                        title: "Code",
-                        column: "code"
-                    },
-                    {
-                        title: "Title",
-                        column: "title"
-                    },
-                    {
-                        title: "Date",
-                        column: "date"
-                    },
-                    {
-                        title: "Processes",
-                        column: "processes"
-                    },
-                    {
-                        title: "Action",
-                        column: "action"
-                    }
-                ]}
+            <div className="container">
 
-                rows={rowsTable}
-                itemsPerPage={5}
-            />
-        </div>
+                <h1 className="mt-3">Master List</h1>
+                <Table
+                    header={[
+                        {
+                            title: "Code",
+                            column: "code"
+                        },
+                        {
+                            title: "Title",
+                            column: "title"
+                        },
+                        {
+                            title: "Date",
+                            column: "date"
+                        },
+                        {
+                            title: "Processes",
+                            column: "processes"
+                        },
+                        {
+                            title: "Action",
+                            column: "action"
+                        }
+                    ]}
+
+                    rows={rowsTable}
+                    itemsPerPage={5}
+                />
+            </div>
+        </Fragment>
     )
 }

@@ -17,8 +17,4 @@ const PageHeader = ({ title, caption }) => {
     )
 };
 
-PageHeader.propTypes = {
-
-}
-
 export default PageHeader;

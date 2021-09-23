@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
+import {
     Navbar as ReactstrapNavbar,
     NavbarBrand,
     Nav,
@@ -9,7 +9,7 @@ import {
     NavbarToggler,
     Collapse
 } from 'reactstrap';
-
+import Logo from '../../img/qualyteamLogo.png';
 import './index.css';
 
 export const Navbar = () => {
@@ -19,18 +19,18 @@ export const Navbar = () => {
 
     return (
         <ReactstrapNavbar color="light" light expand="md">
-            <NavbarBrand>Qualyteam Challenge</NavbarBrand>
+            <NavbarBrand><img src={Logo} className="navbar__logo" /></NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                     <NavItem>
                         <NavLink>
-                            <Link to="/">Home</Link>
+                            <Link to="/" className="navbar__link"><i class="fas fa-home"></i>Home</Link>
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink>
-                            <Link to="/list">Master List</Link>
+                            <Link to="/list" className="navbar__link"><i class="fas fa-clipboard-list"></i> Master List</Link>
                         </NavLink>
                     </NavItem>
                 </Nav>

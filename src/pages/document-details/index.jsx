@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import api from '../../api';
-import PageContent from '../../components/page-content';
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import PageHeader from '../../components/page-header';
 import { useParams } from 'react-router-dom';
-
+import { Button } from 'reactstrap';
 export const DocumentDetails = () => {
     const [document, setDocument] = useState({});
     const { id } = useParams();
@@ -14,39 +15,48 @@ export const DocumentDetails = () => {
     }, []);
     const datePublish = (document.['release-date'] == '' ? 'Não tem' : document.['release-date']);
     return (
-        <div>
+        <Fragment>
             <PageHeader
                 title="Document Details"
             />
-            <PageContent>
-                <div>
-                    Code: {document.code}
-                </div>
-                <div>
-                    Title: {document.title}
-                </div>
-                <div>
-                    Date: {datePublish}
-                </div>
-                <div>
-                    Publish: {document.published == true ? 'Yes' : 'No'}
-                </div>
-                <div>
-                    Status: {document.active == true ? 'Active' : 'Inactive'}
-                </div>
-                <div>
-                    Processes:
-                    {
-                        (typeof (document.processes) == 'object') ?
-                            <div>
-                                {
-                                    document.processes.map((subitem) => <div>{subitem.name}</div>
+            <div className="container pt-3">
 
-                                    )}
-                            </div>
-                            : null}
-                </div>
-            </PageContent>
-        </div>
+                <Table>
+                    <Thead>
+                        <Tr>
+                            <Th>Code</Th>
+                            <Th>Title</Th>
+                            <Th>Date</Th>
+                            <Th>Publish</Th>
+                            <Th>Status</Th>
+                            <Th>Processes</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        <Tr>
+                            <Td>{document.code}</Td>
+                            <Td>{document.title}</Td>
+                            <Td>{datePublish}</Td>
+                            <Td>{document.published == true ? 'Yes' : 'No'}</Td>
+                            <Td>{document.active == true ? 'Active' : 'Inactive'}</Td>
+                            <Td>{
+                                (typeof (document.processes) == 'object') ?
+                                    <ul>
+                                        {
+                                            document.processes.map((subitem) => <li>{subitem.name}</li>
+
+                                            )}
+                                    </ul>
+                                    : null}</Td>
+                        </Tr>
+                    </Tbody>
+                </Table>
+
+            </div>
+            <a href={'/list'}
+                className="mt-3 d-flex align-items-center justify-content-center text-decoration-none">
+                <Button color='secondary'>Back</Button>
+            </a>
+        </Fragment>
     );
 }

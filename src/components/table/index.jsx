@@ -31,7 +31,7 @@ export const Table = ({ header, rows, itemsPerPage }) => {
 
     return (
         <div>
-            <ReactstrapTable hover>
+            <ReactstrapTable responsive striped>
                 <thead>
                     <tr>
                         {header.map((h, index) => <th key={`header-${index}`}>{h.title}</th>)}
